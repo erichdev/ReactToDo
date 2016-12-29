@@ -1,1 +1,1 @@
-A simple React timer app
+A simple React To Do app
