@@ -2,11 +2,11 @@ var React = require('react');
 
 var ToDo = React.createClass({
   render: function () {
-    var {text} = this.props;
+    var {text, id} = this.props;
 
     return (
       <div>
-        {text}
+        {id + ' : ' + text}
       </div>
     );
   }
