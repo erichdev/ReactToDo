@@ -1,5 +1,5 @@
 var React = require('react');
-var ToDoList = require('ToDoList');
+import ToDoList from 'ToDoList';
 var AddToDo = require('AddToDo');
 var ToDoSearch = require('ToDoSearch');
 var uuid =  require('node-uuid');
@@ -31,17 +31,6 @@ var ToDoApp = React.createClass({
       ]
     });
   },
-  handleToggle: function(id){
-    var updatedToDos = this.state.todos.map((todo) => {
-      if (todo.id === id){
-        todo.completed = !todo.completed;
-        todo.completedAt = todo.completed ? moment().unix() : undefined;
-      }
-      return todo;
-    });
-
-    this.setState({todos:updatedToDos});
-  },
   handleSearch: function(showCompleted, searchText){
     this.setState({
       showCompleted: showCompleted,
@@ -59,7 +48,7 @@ var ToDoApp = React.createClass({
           <div className="columns small-centered small-11 medium-6 large-5">
             <div className="container">
               <ToDoSearch onSearch={this.handleSearch}/>
-              <ToDoList todos={filteredToDos} onToggle={this.handleToggle}/>
+              <ToDoList/>
               <AddToDo onAddToDo={this.handleAddToDo}/>
             </div>
           </div>
