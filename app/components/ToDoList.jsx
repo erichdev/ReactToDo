@@ -7,7 +7,6 @@ import ToDo from 'ToDo';
 export var ToDoList = React.createClass({
   render: function () {
     var {todos, showCompleted, searchText} = this.props;
-
     var renderTodos = () => {
       if (todos.length === 0){
         return (
