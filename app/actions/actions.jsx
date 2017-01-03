@@ -41,6 +41,22 @@ export var addToDos = (todos) => {
   };
 };
 
+export var startAddToDos = () => {
+  return (dispatch, state) => {
+    return firebaseRef.child('todos').once('value').then((snapshot) => {
+      var firebaseToDos = snapshot.val() || {};
+      var parsedToDos = [];
+      Object.keys(firebaseToDos).forEach((id) => {
+        parsedToDos.push({
+          id,
+          ...firebaseToDos[id]
+        });
+      });
+      dispatch(addToDos(parsedToDos));
+    });
+  };
+};
+
 export var toggleShowCompleted = () => {
   return {
     type: 'TOGGLE_SHOW_COMPLETED'
