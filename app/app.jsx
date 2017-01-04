@@ -12,6 +12,7 @@ import router from 'app/router';
 firebase.auth().onAuthStateChanged((user) => {
    if (user){
       store.dispatch(actions.login(user.uid));
+      store.dispatch(actions.startAddToDos());
       hashHistory.push('/todos');
    }
    else {
@@ -20,15 +21,11 @@ firebase.auth().onAuthStateChanged((user) => {
    }
 });
 
-store.dispatch(actions.startAddToDos());
-
 // Load foundation
 $(document).foundation();
 
 // App styles
 require('!style!css!sass!applicationStyles');
-
-
 
 ReactDOM.render(
   <Provider store={store}>
