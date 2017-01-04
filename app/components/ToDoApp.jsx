@@ -1,28 +1,38 @@
 var React = require('react');
+import * as Redux from 'react-redux';
+
+import * as actions from 'actions';
 import ToDoList from 'ToDoList';
 import AddToDo from 'AddToDo';
 import ToDoSearch from 'ToDoSearch';
-var uuid =  require('node-uuid');
-var moment = require('moment');
 
-var ToDoApp = React.createClass({
-  render: function(){
-    return (
-      <div>
-        <h1 className="page-title">To Do App</h1>
-
-        <div className="row">
-          <div className="columns small-centered small-11 medium-6 large-5">
-            <div className="container">
-              <ToDoSearch/>
-              <ToDoList/>
-              <AddToDo/>
+export var ToDoApp = React.createClass({
+   onLogout(e) {
+      e.preventDefault();
+      var {dispatch} = this.props;
+      dispatch(actions.startLogout());
+   },
+   render(){
+      return (
+         <div>
+            <div className="page-actions">
+               <a href="#" onClick={this.onLogout}>Logout</a>
             </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+
+            <h1 className="page-title">To Do App</h1>
+
+            <div className="row">
+               <div className="columns small-centered small-11 medium-6 large-5">
+                  <div className="container">
+                     <ToDoSearch/>
+                     <ToDoList/>
+                     <AddToDo/>
+                  </div>
+               </div>
+            </div>
+         </div>
+      );
+   }
 });
 
-module.exports = ToDoApp;
+export default Redux.connect()(ToDoApp);
